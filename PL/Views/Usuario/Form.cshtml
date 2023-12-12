@@ -1,0 +1,106 @@
+﻿@model ML.Usuario
+@{
+    ViewData["Title"] = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h3><strong>@ViewBag.Titulo</strong></h3>
+            <h5><strong>Llena todos los datos en los campos correspondientes.</strong></h5>
+        </div>
+    </div>
+
+    <hr />
+
+    @using (Html.BeginForm("Form", "Usuario", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="row">
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.IdUsuario, new { @class = "control-label col-md-2 visually-hidden" })
+                @Html.TextBoxFor(model => model.IdUsuario, new { @class = "form-control visually-hidden", @readonly = true })
+                @Html.ValidationMessageFor(model => model.IdUsuario)
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.Nombre, new { @class = "control-label col-md-2" })
+                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Nombre)
+            </div>
+
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.ApellidoPaterno, new { @class = "control-label col-md-2" })
+                @Html.TextBoxFor(model => model.ApellidoPaterno, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ApellidoPaterno)
+            </div>
+
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.ApellidoMaterno, new { @class = "control-label col-md-2" })
+                @Html.TextBoxFor(model => model.ApellidoMaterno, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ApellidoMaterno)
+            </div>
+
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Email)
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.Contrasenia, new { @class = "control-label col-md-2" })
+                @Html.TextBoxFor(model => model.Contrasenia, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Contrasenia)
+            </div>
+
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.Telefono, new { @class = "control-label col-md-2" })
+                @Html.TextBoxFor(model => model.Telefono, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Telefono)
+            </div>
+
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.Acceso.IdAcceso, new { @class = "control-label col-md-2" })
+                @Html.DropDownListFor(model => model.Acceso.IdAcceso, new SelectList(Model.Acceso.Accesos, "IdAcceso", "Tipo"), "Selecciona el tipo de acceso: ", new { @class = "form-control" })
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+
+            <div class="col-md-2">
+            </div>
+
+            <div class="col-md-2">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="@ViewBag.Accion" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        @Html.ActionLink("Regresar", "GetAll", "Usuario", htmlAttributes: new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+            </div>
+
+            <div class="col-md-2">
+            </div>
+        </div>
+    }
+</div>
